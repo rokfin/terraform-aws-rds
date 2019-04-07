@@ -54,40 +54,41 @@ The module will create:
 
 ```hcl
 module "rds_instance" {
-    source                      = "git::https://github.com/cloudposse/terraform-aws-rds.git?ref=master"
-    namespace                   = "eg"
-    stage                       = "prod"
-    name                        = "app"
-    dns_zone_id                 = "Z89FN1IW975KPE"
-    host_name                   = "db"
-    security_group_ids          = ["sg-xxxxxxxx"]
-    database_name               = "wordpress"
-    database_user               = "admin"
-    database_password           = "xxxxxxxxxxxx"
-    database_port               = 3306
-    multi_az                    = "true"
-    storage_type                = "gp2"
-    allocated_storage           = "100"
-    storage_encrypted           = "true"
-    engine                      = "mysql"
-    engine_version              = "5.7.17"
-    major_engine_version        = "5.7"
-    instance_class              = "db.t2.medium"
-    db_parameter_group          = "mysql5.6"
-    parameter_group_name        = "mysql-5-6"
-    option_group_name           = "mysql-options"
-    publicly_accessible         = "false"
-    subnet_ids                  = ["sb-xxxxxxxxx", "sb-xxxxxxxxx"]
-    vpc_id                      = "vpc-xxxxxxxx"
-    snapshot_identifier         = "rds:production-2015-06-26-06-05"
-    auto_minor_version_upgrade  = "true"
-    allow_major_version_upgrade = "false"
-    apply_immediately           = "false"
-    maintenance_window          = "Mon:03:00-Mon:04:00"
-    skip_final_snapshot         = "false"
-    copy_tags_to_snapshot       = "true"
-    backup_retention_period     = 7
-    backup_window               = "22:00-03:00"
+    source                                = "git::https://github.com/cloudposse/terraform-aws-rds.git?ref=master"
+    namespace                             = "eg"
+    stage                                 = "prod"
+    name                                  = "app"
+    dns_zone_id                           = "Z89FN1IW975KPE"
+    host_name                             = "db"
+    security_group_ids                    = ["sg-xxxxxxxx"]
+    database_name                         = "wordpress"
+    database_user                         = "admin"
+    database_password                     = "xxxxxxxxxxxx"
+    iam_database_authentication_enabled   = true
+    database_port                         = 3306
+    multi_az                              = "true"
+    storage_type                          = "gp2"
+    allocated_storage                     = "100"
+    storage_encrypted                     = "true"
+    engine                                = "mysql"
+    engine_version                        = "5.7.17"
+    major_engine_version                  = "5.7"
+    instance_class                        = "db.t2.medium"
+    db_parameter_group                    = "mysql5.6"
+    parameter_group_name                  = "mysql-5-6"
+    option_group_name                     = "mysql-options"
+    publicly_accessible                   = "false"
+    subnet_ids                            = ["sb-xxxxxxxxx", "sb-xxxxxxxxx"]
+    vpc_id                                = "vpc-xxxxxxxx"
+    snapshot_identifier                   = "rds:production-2015-06-26-06-05"
+    auto_minor_version_upgrade            = "true"
+    allow_major_version_upgrade           = "false"
+    apply_immediately                     = "false"
+    maintenance_window                    = "Mon:03:00-Mon:04:00"
+    skip_final_snapshot                   = "false"
+    copy_tags_to_snapshot                 = "true"
+    backup_retention_period               = 7
+    backup_window                         = "22:00-03:00"
 
     db_parameter                = [
       { name  = "myisam_sort_buffer_size"   value = "1048576" },
@@ -146,6 +147,7 @@ Available targets:
 | engine_version | Database engine version, depends on engine type | string | - | yes |
 | final_snapshot_identifier | Final snapshot identifier e.g.: some-db-final-snapshot-2015-06-26-06-05 | string | `` | no |
 | host_name | The DB host name created in Route53 | string | `db` | no |
+| iam_database_authentication_enabled | Specifies whether or mappings of AWS Identity and Access Management (IAM) accounts to database accounts is enabled | string | `false` | no |
 | instance_class | Class of RDS instance | string | - | yes |
 | iops | The amount of provisioned IOPS. Setting this implies a storage_type of 'io1'. Default is 0 if rds storage type is not 'io1' | string | `0` | no |
 | license_model | License model for this DB.  Optional, but required for some DB Engines. Valid values: license-included | bring-your-own-license | general-public-license | string | `` | no |

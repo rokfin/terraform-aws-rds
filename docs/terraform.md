@@ -24,6 +24,7 @@
 | engine_version | Database engine version, depends on engine type | string | - | yes |
 | final_snapshot_identifier | Final snapshot identifier e.g.: some-db-final-snapshot-2015-06-26-06-05 | string | `` | no |
 | host_name | The DB host name created in Route53 | string | `db` | no |
+| iam_database_authentication_enabled | Specifies whether or mappings of AWS Identity and Access Management (IAM) accounts to database accounts is enabled | string | `false` | no |
 | instance_class | Class of RDS instance | string | - | yes |
 | iops | The amount of provisioned IOPS. Setting this implies a storage_type of 'io1'. Default is 0 if rds storage type is not 'io1' | string | `0` | no |
 | license_model | License model for this DB.  Optional, but required for some DB Engines. Valid values: license-included | bring-your-own-license | general-public-license | string | `` | no |

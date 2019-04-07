@@ -53,6 +53,11 @@ variable "database_password" {
   description = "(Required unless a snapshot_identifier or replicate_source_db is provided) Password for the master DB user"
 }
 
+variable "iam_database_authentication_enabled" {
+  description = "Specifies whether or mappings of AWS Identity and Access Management (IAM) accounts to database accounts is enabled"
+  default     = false
+}
+
 variable "database_port" {
   description = "Database port (_e.g._ `3306` for `MySQL`). Used in the DB Security Group to allow access to the DB instance from the provided `security_group_ids`"
 }
